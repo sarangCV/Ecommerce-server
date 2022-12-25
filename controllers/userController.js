@@ -194,7 +194,8 @@ exports.forgotPassword = async (req, res) => {
   user.save();
 
   // Send it user's email
-  const resetURL = `${req.protocol}://localhost:3000/users/resetPassword/${resetToken}`;
+  // const resetURL = `${req.protocol}://localhost:3000/users/resetPassword/${resetToken}`;
+  const resetURL = `https://password-reset-ui.onrender.com/users/resetPassword/${resetToken}`;
 
   const message = `Forgot your password? Submit a PATCH request with your new password to: ${resetURL}. \n If you don't forget your password, please ignore this email`;
 
