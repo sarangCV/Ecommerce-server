@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Image = require("../models/ImageModel");
 const crypto = require("crypto");
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,7 +22,10 @@ const UserSchema = new mongoose.Schema({
     min: 6,
     select: false,
   },
-  images: Array,
+  // images: Array,
+  img: {
+    type: Buffer,
+  },
   passwordResetToken: String,
   passwordResetExpires: Date,
   date: {
@@ -39,6 +43,7 @@ const UserSchema = new mongoose.Schema({
 //   this.images = await Promise.all(imagesPromises);
 //   next();
 // });
+
 UserSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
@@ -52,5 +57,10 @@ UserSchema.methods.createPasswordResetToken = function () {
 
   return resetToken;
 };
+
+// UserSchema.methods.createProfilePicture = function (data) {
+//   // console.log("PROFILE INSTANT FUNC::", data);
+//   this.img = data;
+// };
 
 module.exports = mongoose.model("User", UserSchema);

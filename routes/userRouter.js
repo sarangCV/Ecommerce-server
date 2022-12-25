@@ -40,6 +40,7 @@ const upload = multer({
 router.post("/signup", userController.signup);
 router.post("/login", userController.login);
 router.post("/googleLogin", userController.googleLogin);
+
 // User routes
 router.post(
   "/profile/upload/:id",
