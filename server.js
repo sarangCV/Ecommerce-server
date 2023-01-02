@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const colors = require("colors");
+const path = require("path");
 
 // Importing routes
 const userRoute = require("./routes/userRouter");
@@ -32,6 +33,9 @@ app.use("/api", limiter);
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: "10kb" }));
 app.use(cors());
+
+// To access static files public (http://localhost:8000/public/image-1672676337177-437026477.png)
+app.use("/public", express.static(path.join(__dirname, "public/data/uploads")));
 
 // routes
 app.use("/api/users", userRoute);

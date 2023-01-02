@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
   },
   // images: Array,
   img: {
-    type: Buffer,
+    type: String,
   },
   passwordResetToken: String,
   passwordResetExpires: Date,
