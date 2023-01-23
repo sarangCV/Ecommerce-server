@@ -142,7 +142,7 @@ exports.googleLogin = async (req, res) => {
 
 // Upload profile picture
 exports.uploadProfileImage = async (req, res) => {
-  console.log("USER FROM UPLOAD PROFILE PIC::", req.file.filename);
+  // console.log("USER FROM UPLOAD PROFILE PIC::", req.file.filename);
   // req.user = req.file.buffer;
   const newImage = new Image({
     name: req.body.name,
@@ -154,9 +154,9 @@ exports.uploadProfileImage = async (req, res) => {
   try {
     // const savedImage = await newImage.save();
     const user = await User.findById(req.params.id);
-    console.log("LOG FROM UPLOAD IMAGE", req.file.filename);
+    // console.log("LOG FROM UPLOAD IMAGE", user);
     // const profilePic = user.createProfilePicture(newImage.img.data);
-    user.img = req.file.filename;
+    user.img = newImage.img.data;
     const savedUser = await user.save();
     // console.log("SAVED IMAGE FROM API", savedUser);
     res.status(201).json({ status: "success", savedUser });
